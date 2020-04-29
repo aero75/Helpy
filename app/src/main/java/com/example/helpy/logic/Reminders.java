@@ -1,5 +1,6 @@
 package com.example.helpy.logic;
 
+
 /**
  * This class describes the reminder Object.
  * Each reminder that the user wishes to create will be created here.
@@ -11,30 +12,39 @@ public class Reminders {
     /**Remind message String.*/
     private String remind;
 
-    /**hours value of time.*/
-    private int hours;
+    /**days value of time.*/
+    private int date;
 
-    /**Minutes value of time.*/
-    private int minutes;
+    /**months value of time.*/
+    private int month;
 
-    /**If it is in the AM or the PM.*/
-    private boolean isItMorning;
+    /**years value of time. */
+    private int year;
 
     /**
      * Reminder Object. Creates a reminder with a specified thing to remind you about and the time of the message.
      * All input is provided by the uses and it will throw an illegal argument exception based on what the error is.
      * @param remind What needs to be reminded
-     * @param hours the hour of the time
-     * @param minutes the minutes of the time
-     * @param isItMorning if it is AM or PM
+     * @param date the hour of the time
+     * @param month the minutes of the time
+     * @param year if it is AM or PM
      */
 
-    public Reminders(final String remind, final int hours, final int minutes, final boolean isItMorning) {
+    public Reminders(final String remind, final int date, final int month, final int year) {
 
-        this.hours = hours;
+        this.date = date;
         this.remind = remind;
-        this.minutes = minutes;
-        this.isItMorning = isItMorning;
+        this.month = month;
+        this.year = year;
+
+    }
+
+    public Reminders() {
+
+        this.date = 0;
+        this.remind = null;
+        this.month = 0;
+        this.year = 0;
 
     }
 
@@ -42,9 +52,9 @@ public class Reminders {
      * returns hours.
      * @return this.hours the hours unit
      */
-    public int getHours() {
+    public int getMonth() {
 
-        return this.hours;
+        return this.month;
 
     }
 
@@ -52,9 +62,9 @@ public class Reminders {
      * returns minutes.
      * @return this.mintes the hours unit
      */
-    public int getMinutes() {
+    public int getDate() {
 
-        return this.minutes;
+        return this.date;
 
     }
 
@@ -72,29 +82,29 @@ public class Reminders {
      * returns if it is noon.
      * @return this.isItNoon the hours unit
      */
-    public boolean getIsItMorning() {
+    public int getYear() {
 
-        return this.isItMorning;
+        return this.year;
 
     }
 
     /**
      * changes hours.
-     * @param hours the hours unit
+     * @param date the hours unit
      */
-    public void setHours(int hours) {
+    public void setDate(int date) {
 
-        this.hours = hours;
+        this.date = date;
 
     }
 
     /**
      * changes minutes.
-     * @param minutes the hours unit
+     * @param month the hours unit
      */
-    public void setMinutes(int minutes) {
+    public void setMonth(int month) {
 
-        this.minutes = minutes;
+        this.month = month;
 
     }
 
@@ -110,11 +120,11 @@ public class Reminders {
 
     /**
      * changes the am or pm.
-     * @param morning the hours unit
+     * @param year the hours unit
      */
-    public void setIsItMorning(boolean morning) {
+    public void setYear(int year) {
 
-        this.isItMorning = morning;
+        this.year = year;
 
     }
 
@@ -125,16 +135,16 @@ public class Reminders {
     public boolean isLater(Reminders other) {
 
         // checks if other is in the morning or not
-        if (other.getIsItMorning() && !this.isItMorning)
+        if (other.getYear() < this.getYear())
             return false;
 
 
         // checks if the hours is lesser
-        if (other.hours < this.hours)
+        if (other.getMonth() < this.month)
             return false;
 
         // checks minutes
-        if (other.minutes < this.minutes)
+        if (other.getDate() < this.date)
             return false;
 
         // thus, it is later, so return true;
